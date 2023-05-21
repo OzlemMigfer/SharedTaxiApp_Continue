@@ -10,6 +10,9 @@ import com.facebook.react.defaults.DefaultReactNativeHost;
 import com.facebook.soloader.SoLoader;
 import java.util.List;
 
+//for vector-icons
+import com.oblador.vectoricons.VectorIconsPackage;
+
 public class MainApplication extends Application implements ReactApplication {
 
   private final ReactNativeHost mReactNativeHost =
@@ -20,11 +23,24 @@ public class MainApplication extends Application implements ReactApplication {
         }
 
         @Override
-        protected List<ReactPackage> getPackages() {
-          @SuppressWarnings("UnnecessaryLocalVariable")
+        protected List<ReactPackage> getPackages() {          
+          // @SuppressWarnings("UnnecessaryLocalVariable")
           List<ReactPackage> packages = new PackageList(this).getPackages();
           // Packages that cannot be autolinked yet can be added manually here, for example:
           // packages.add(new MyReactNativePackage());
+
+
+          // VectorIconsPackage'ı packages listesinden kaldırın
+          // for (ReactPackage pkg : packages) {
+          //   if (pkg instanceof VectorIconsPackage) {
+          //     packages.remove(pkg);
+          //     break;
+          //   }
+          // }
+
+          //for vector-icons
+          // packages.add(new VectorIconsPackage());
+          
           return packages;
         }
 
