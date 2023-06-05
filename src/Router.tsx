@@ -23,7 +23,7 @@ const Router = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator 
-        initialRouteName="PassengerInfo" 
+        initialRouteName="FirstPage" 
         screenOptions={{ 
           headerShown:false ,
           headerStyle:{

@@ -30,7 +30,7 @@ const PassengerInfo = () => {
 
       <View style={styles.body_container}>       
         <View style={styles.info_container}>
-          <Text style={styles.name_text}>Öznur Miğfer</Text>
+          <Text style={styles.name_text}>Özlem Miğfer</Text>
           <Text style={styles.number_text}>+90 541 881 99 80</Text>
         </View>
 
