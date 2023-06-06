@@ -9,17 +9,33 @@ const ConfirmOTP = ({phoneNumber}) => {
   const [verificationCode, setVerificationCode] = useState('');
   const navigation = useNavigation();
   
-  const handleVerification = async () => {
+  // const handleVerification = async () => {
+  //   try {
+  //     const confirmation = await auth().signInWithPhoneNumber(phoneNumber);
+  //     await confirmation.confirm(verificationCode);
+  //     // Doğrulama işlemi başarılıysa, kullanıcıyı uygulamanın ana sayfasına yönlendir
+  //     navigation.navigate('EMailPage');
+  //   } catch (error) {
+  //     // Doğrulama işlemi başarısızsa, kullanıcıya hata mesajı göster
+  //     console.log(error);
+  //   }
+  // };
+
+  const handleOTPVerification = async () => {
     try {
-      const confirmation = await auth().signInWithPhoneNumber(phoneNumber);
-      await confirmation.confirm(verificationCode);
-      // Doğrulama işlemi başarılıysa, kullanıcıyı uygulamanın ana sayfasına yönlendir
+      const credential = auth.PhoneAuthProvider.credential(
+        phoneNumber,
+        verificationCode
+      );
+      await auth().signInWithCredential(credential);
+      // Doğrulama başarılı
+      console.log('Doğrulama başarılı');
       navigation.navigate('EMailPage');
     } catch (error) {
-      // Doğrulama işlemi başarısızsa, kullanıcıya hata mesajı göster
-      console.log(error);
+      console.log('Doğrulama hatası:', error);
     }
   };
+
 
   return (
     <View style={styles.container}>
@@ -30,10 +46,10 @@ const ConfirmOTP = ({phoneNumber}) => {
           value={verificationCode}
           placeholder="Doğrulama Kodu"
           placeholderTextColor="gray"
-          onChangeText={setVerificationCode}
+          onChangeText={(text) => setVerificationCode(text)}
           keyboardType="phone-pad"
         />
-        <TouchableOpacity style={styles.button} onPress={handleVerification}>
+        <TouchableOpacity style={styles.button} onPress={handleOTPVerification}>
           <Text style={styles.button_text}>Gönder</Text>
         </TouchableOpacity>
       </View>

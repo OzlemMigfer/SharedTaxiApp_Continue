@@ -11,6 +11,7 @@ const FirstPage = ({navigation}) => {
   const [countryCode, setCountryCode] = useState('TR');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [verificationStarted, setVerificationStarted] = useState(false);
+  const [verificationId, setVerificationId] = useState('');
   //google-sign-in
   const [userGoogle, setUserGoogle] = useState({});
 
@@ -45,15 +46,35 @@ const FirstPage = ({navigation}) => {
     return auth().signInWithCredential(googleCredential);
   }
 
-  //phone auth
-  const handlePhoneAuth = () => {
-    setVerificationStarted(true);
+  // //phone auth
+  // const handlePhoneAuth = () => {
+  //   setVerificationStarted(true);
+  // };
+
+  // //phone auth
+  // if (verificationStarted) {
+  //   const fullPhoneNumber = `+90${phoneNumber}`;
+  //   return <ConfirmOTP phoneNumber={fullPhoneNumber} />;
+  // }
+
+
+  const handlePhoneAuth = async () => {
+    try {
+      const fullPhoneNumber = `+90${phoneNumber}`;
+
+      const confirmation = await auth().verifyPhoneNumber(fullPhoneNumber);
+      setVerificationId(confirmation.verificationId);
+      setVerificationStarted(true);
+      // Telefon numarasına doğrulama kodu gönderildi
+      console.log('Doğrulama kodu gönderildi');
+      navigation.navigate('ConfirmOTP');
+    } catch (error) {
+      console.log('Doğrulama hatası:', error);
+    }
   };
 
-  //phone auth
   if (verificationStarted) {
-    const fullPhoneNumber = `+90${phoneNumber}`;
-    return <ConfirmOTP phoneNumber={fullPhoneNumber} />;
+    return <ConfirmOTP phoneNumber={phoneNumber} verificationId={verificationId} />;
   }
 
   return (
