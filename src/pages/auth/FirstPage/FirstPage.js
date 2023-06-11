@@ -47,31 +47,33 @@ const FirstPage = ({navigation}) => {
   }
 
   // //phone auth
-  // const handlePhoneAuth = () => {
-  //   setVerificationStarted(true);
-  // };
+  const handlePhoneAuth = () => {
+    setVerificationStarted(true);
+  };
 
   // //phone auth
-  // if (verificationStarted) {
-  //   const fullPhoneNumber = `+90${phoneNumber}`;
-  //   return <ConfirmOTP phoneNumber={fullPhoneNumber} />;
-  // }
+  if (verificationStarted) {
+    const fullPhoneNumber = `+90${phoneNumber}`;
+    return <ConfirmOTP phoneNumber={fullPhoneNumber} />;
+  }
 
 
-  const handlePhoneAuth = async () => {
-    try {
-      const fullPhoneNumber = `+90${phoneNumber}`;
 
-      const confirmation = await auth().verifyPhoneNumber(fullPhoneNumber);
-      setVerificationId(confirmation.verificationId);
-      setVerificationStarted(true);
-      // Telefon numarasına doğrulama kodu gönderildi
-      console.log('Doğrulama kodu gönderildi');
-      navigation.navigate('ConfirmOTP');
-    } catch (error) {
-      console.log('Doğrulama hatası:', error);
-    }
-  };
+  // const handlePhoneAuth = async () => {
+  //   try {
+  //     const fullPhoneNumber = `+90${phoneNumber}`;
+  //     const confirmation = await auth().verifyPhoneNumber(fullPhoneNumber);
+  //     setVerificationId(confirmation.verificationId);
+  //     setVerificationStarted(true);
+  //     // Telefon numarasına doğrulama kodu gönderildi
+  //     console.log('Doğrulama kodu gönderildi');
+  //     navigation.navigate('ConfirmOTP');
+  //   } catch (error) {
+  //     console.log('Doğrulama hatası:', error);
+  //   }
+  // };
+
+
 
   if (verificationStarted) {
     return <ConfirmOTP phoneNumber={phoneNumber} verificationId={verificationId} />;

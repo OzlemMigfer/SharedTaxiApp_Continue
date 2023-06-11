@@ -9,32 +9,32 @@ const ConfirmOTP = ({phoneNumber}) => {
   const [verificationCode, setVerificationCode] = useState('');
   const navigation = useNavigation();
   
-  // const handleVerification = async () => {
-  //   try {
-  //     const confirmation = await auth().signInWithPhoneNumber(phoneNumber);
-  //     await confirmation.confirm(verificationCode);
-  //     // Doğrulama işlemi başarılıysa, kullanıcıyı uygulamanın ana sayfasına yönlendir
-  //     navigation.navigate('EMailPage');
-  //   } catch (error) {
-  //     // Doğrulama işlemi başarısızsa, kullanıcıya hata mesajı göster
-  //     console.log(error);
-  //   }
-  // };
-
-  const handleOTPVerification = async () => {
+  const handleVerification = async () => {
     try {
-      const credential = auth.PhoneAuthProvider.credential(
-        phoneNumber,
-        verificationCode
-      );
-      await auth().signInWithCredential(credential);
-      // Doğrulama başarılı
-      console.log('Doğrulama başarılı');
+      const confirmation = await auth().signInWithPhoneNumber(phoneNumber);
+      await confirmation.confirm(verificationCode);
+      // Doğrulama işlemi başarılıysa, kullanıcıyı uygulamanın ana sayfasına yönlendir
       navigation.navigate('EMailPage');
     } catch (error) {
-      console.log('Doğrulama hatası:', error);
+      // Doğrulama işlemi başarısızsa, kullanıcıya hata mesajı göster
+      console.log(error);
     }
   };
+
+  // const handleOTPVerification = async () => {
+  //   try {
+  //     const credential = auth.PhoneAuthProvider.credential(
+  //       fullPhoneNumber,
+  //       verificationCode
+  //     );
+  //     await auth().signInWithCredential(credential);
+  //     // Doğrulama başarılı
+  //     console.log('Doğrulama başarılı');
+  //     navigation.navigate('EMailPage');
+  //   } catch (error) {
+  //     console.log('Doğrulama hatası:', error);
+  //   }
+  // };
 
 
   return (
@@ -49,7 +49,7 @@ const ConfirmOTP = ({phoneNumber}) => {
           onChangeText={(text) => setVerificationCode(text)}
           keyboardType="phone-pad"
         />
-        <TouchableOpacity style={styles.button} onPress={handleOTPVerification}>
+        <TouchableOpacity style={styles.button} onPress={handleVerification}>
           <Text style={styles.button_text}>Gönder</Text>
         </TouchableOpacity>
       </View>
