@@ -4,6 +4,8 @@ import styles from './HomePage.styles';
 import {Dropdown} from 'react-native-element-dropdown';
 import FastImage from 'react-native-fast-image';
 import {useNavigation} from '@react-navigation/native';
+// import axios from 'axios';
+
 
 const cityData = [
   {key: '1', value: 'Adana'},
@@ -109,6 +111,16 @@ const HomePage = () => {
       </View>
     );
   };
+
+  
+  // //get data from api
+  // async function fetchData(){
+
+  // }
+
+
+
+  
   return (
     <View style={styles.container}>
       <Image style={styles.image} source={require('../../../components/assets/background-homepage-2.png')} />
