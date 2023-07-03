@@ -91,8 +91,37 @@ const cityData = [
   {key: '81', value: 'Düzce'},
 ];
 
+const townData = [
+  {key: '1', value: 'Merkez'},
+  {key: '2', value: 'Ağın'},
+  {key: '3', value: 'Alacakaya'},
+  {key: '4', value: 'Arıcak'},
+  {key: '5', value: 'Baskil'},
+  {key: '6', value: 'Karakoçan'},
+  {key: '7', value: 'Keban'},
+  {key: '8', value: 'Kovancılar'},
+  {key: '9', value: 'Maden'},
+  {key: '10', value: 'Palu'},
+  {key: '11', value: 'Sivrice'},
+]
+
+const quarterData = [
+  {key: '1', value: 'Üniversite Mah.'},
+  {key: '2', value: 'Beşyol Mah.'},
+  {key: '3', value: 'Kırklar Mah.'},
+  {key: '4', value: 'Kızılay Mah.'},
+  {key: '5', value: 'Aydınlar Mah.'},
+  {key: '6', value: 'Yeni Mah.'},
+  {key: '7', value: 'Hürriyet Mah.'},
+  {key: '8', value: 'Harput Mah.'},
+  {key: '9', value: 'Şehitlik Mah.'},
+  {key: '10', value: 'Yıldızbağları Mah.'}
+]
+
 const HomePage = () => {
   const [keyCity, setKeyCity] = useState('');
+  const [keyTown, setKeyTown] = useState('');
+  const [keyQuarter, setKeyQuarter] = useState('');
 
   const [selectedCity, setSelectedCity] = useState('');
   const [selectedTown, setSelectedTown] = useState('');
@@ -112,15 +141,6 @@ const HomePage = () => {
     );
   };
 
-  
-  // //get data from api
-  // async function fetchData(){
-
-  // }
-
-
-
-  
   return (
     <View style={styles.container}>
       <Image style={styles.image} source={require('../../../components/assets/background-homepage-2.png')} />
@@ -152,9 +172,9 @@ const HomePage = () => {
           labelField="value"
           placeholder="İlçe Seçiniz"
           renderItem={renderItem}
-          value={keyCity}
-          data={cityData}
-          onChange={item => {setSelectedCity(item.value)}}
+          value={keyTown}
+          data={townData}
+          onChange={item => {setSelectedTown(item.value)}}
           search
         />
         <Dropdown 
@@ -167,9 +187,9 @@ const HomePage = () => {
           labelField="value"
           placeholder="Mahalle Seçiniz"
           renderItem={renderItem}
-          value={keyCity}
-          data={cityData}
-          onChange={item => {setSelectedCity(item.value)}}
+          value={keyQuarter}
+          data={quarterData}
+          onChange={item => {setSelectedQuarter(item.value)}}
           search
         />
       </View>
@@ -201,9 +221,9 @@ const HomePage = () => {
           labelField="value"
           placeholder="İlçe Seçiniz"
           renderItem={renderItem}
-          value={keyCity}
-          data={cityData}
-          onChange={item => {setSelectedCity(item.value)}}
+          value={keyTown}
+          data={townData}
+          onChange={item => {setSelectedTown(item.value)}}
           search
         />
         <Dropdown 
@@ -216,9 +236,9 @@ const HomePage = () => {
           labelField="value"
           placeholder="Mahalle Seçiniz"
           renderItem={renderItem}
-          value={keyCity}
-          data={cityData}
-          onChange={item => {setSelectedCity(item.value)}}
+          value={keyQuarter}
+          data={quarterData}
+          onChange={item => {setSelectedQuarter(item.value)}}
           search
         />
       </View>
